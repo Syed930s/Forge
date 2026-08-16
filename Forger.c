@@ -1372,7 +1372,11 @@ int main(int argc,char**argv){
     emit_entry(&ctx);
     resolve_patches(&ctx);
     finalize_strings(&ctx);
-    eoff=find_lbl(&ctx,"_start");
+    {
+        u32 drv=find_lbl(&ctx,"DriverEntry");
+        if(drv!=~0u) eoff=drv;
+        else eoff=find_lbl(&ctx,"_start");
+    }
     if(g_verbose)printf("forger: code=%u bytes  entry=0x%X\n",ctx.pos,eoff);
 
     /* Emit */
