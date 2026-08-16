@@ -1,0 +1,8 @@
+# fCOM.fgl
+# Flat .COM-style output for Forger custom emitter.
+# Adds a jump stub at offset 0 to Forger's _start entry.
+
+FIELD byte 0xE9
+FIELD le32 0
+CODE
+ENTRY_OFF32 1
